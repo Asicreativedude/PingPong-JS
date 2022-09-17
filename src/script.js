@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { DragControls } from 'three/examples/jsm/controls/DragControls';
 import CannonDebugger from 'cannon-es-debugger';
-// import * as dat from 'lil-gui';
+import * as dat from 'lil-gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TextureLoader } from 'three';
 
@@ -11,7 +11,7 @@ import { TextureLoader } from 'three';
  * Base
  */
 // Debug
-// const gui = new dat.GUI();
+const gui = new dat.GUI();
 
 const ballFollower = document.querySelector('.ballFollower');
 // Canvas
@@ -117,7 +117,6 @@ let counter = document.querySelector('.counter');
 let counterNumber = 1;
 const collision = () => {
 	if (Math.abs(sphereBody.velocity.y) > 1) {
-		console.log(Math.abs(sphereBody.velocity.y));
 		counter.innerHTML = counterNumber;
 		counterNumber++;
 		hitSound.play();
@@ -232,7 +231,8 @@ if (sizes.width < sizes.height) {
 // const cannonDebuger = new CannonDebugger(scene, world, {
 // 	color: 0xff0000,
 // });
-
+gui.add(sphereBody.position, 'x');
+gui.add(sphereBody.position, 'y');
 let lost = false;
 const clock = new THREE.Clock();
 let oldElapsedTime = 0;
@@ -259,18 +259,16 @@ function tick() {
 				racketBody.quaternion.z = racket.quaternion.z;
 				racket.rotation.y = mouse.x;
 			}
-		} else {
-			// racket.position.x = mouse.x;
-			// racket.position.y = mouse.y;
-			// // racketBody.position.y = racket.position.y + 0.08;
-			// racket.rotation.z = mouse.x * 0.3;
-			// racketBody.quaternion.z = racket.quaternion.z;
-			// racket.rotation.y = mouse.x;
 		}
-
 		if (ball.position.y > 5.5) {
 			ballFollower.style.display = 'block';
-			ballFollower.style.marginLeft = ball.position.x * 450 + 'px';
+			if (sizes.width > sizes.height) {
+				ballFollower.style.marginLeft =
+					ball.position.x * (sizes.width / 6) + 'px';
+			} else {
+				ballFollower.style.marginLeft =
+					ball.position.x * (sizes.width / 1.5) + 'px';
+			}
 		} else {
 			ballFollower.style.display = 'none';
 		}
