@@ -1,0 +1,60 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	overflow: hidden;
+}
+.gameContainer {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	outline: none;
+}
+
+.webgl {
+	position: absolute;
+	top: 0;
+	left: 0;
+	outline: none;
+	right: 5rem;
+	bottom: 8rem;
+	/* cursor: none; */
+}
+.startGame {
+	/* position: absolute; */
+	z-index: 500;
+	padding: 1rem 2rem;
+}
+.counter {
+	font-size: 4rem;
+	position: absolute;
+	top: 8rem;
+	left: 8rem;
+	filter: invert(1);
+	z-index: 2;
+}
+.ballFollower {
+	width: 64px;
+	height: 64px;
+	z-index: 999;
+	display: none;
+	bottom: -5px;
+	position: absolute;
+}
+.arrowImg {
+	width: 100%;
+}
+.lostGame {
+	display: none;
+	z-index: 2;
+	padding: 2rem;
+	border-radius: 1rem;
+}
