@@ -2,7 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { DragControls } from 'three/examples/jsm/controls/DragControls';
-import CannonDebugger from 'cannon-es-debugger';
+//import CannonDebugger from 'cannon-es-debugger';
 //import * as dat from 'lil-gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TextureLoader } from 'three';
@@ -228,9 +228,9 @@ if (sizes.width < sizes.height) {
 }
 
 /**cannon debuger */
-const cannonDebuger = new CannonDebugger(scene, world, {
-	color: 0xff0000,
-});
+// const cannonDebuger = new CannonDebugger(scene, world, {
+// 	color: 0xff0000,
+// });
 
 let lost = false;
 const clock = new THREE.Clock();
@@ -280,7 +280,7 @@ function tick() {
 
 		world.step(1 / 240, deltaTime);
 		ball.position.copy(sphereBody.position);
-		cannonDebuger.update();
+		// cannonDebuger.update();
 		// Update controls
 		// controls.update();
 
