@@ -60,5 +60,13 @@ body {
 	border-radius: 1rem;
 }
 
+.leaderboard-c {
+	display: none;
+	position: absolute;
+	z-index: 9999;
+	background-color: white;
+	padding: 2rem;
+}
+
 
 /*# sourceMappingURL=main.css.map*/
