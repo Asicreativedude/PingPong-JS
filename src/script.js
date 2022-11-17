@@ -2,56 +2,10 @@ import './style.css';
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { DragControls } from 'three/examples/jsm/controls/DragControls';
-// import CannonDebugger from 'cannon-es-debugger';
+import CannonDebugger from 'cannon-es-debugger';
 import * as dat from 'lil-gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TextureLoader } from 'three';
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, onValue } from 'firebase/database';
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-	apiKey: 'AIzaSyCv-MmiqaIPRuGOWJNgXxp_8Pp_VSnsVHI',
-	authDomain: 'asiportfolio.firebaseapp.com',
-	databaseURL: 'https://asiportfolio-default-rtdb.firebaseio.com',
-	projectId: 'asiportfolio',
-	storageBucket: 'asiportfolio.appspot.com',
-	messagingSenderId: '35085622133',
-	appId: '1:35085622133:web:b484cec242511868c7913c',
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase();
-//Write Score
-function writeUserScore(userID, gameScore) {
-	const reference = ref(db, 'players/' + userID);
-
-	set(reference, {
-		score: gameScore,
-	});
-}
-writeUserScore('Asi', '5');
-writeUserScore('bro', '6');
-writeUserScore('sara', '8');
-writeUserScore('lol', '1');
-writeUserScore('james', '2');
-
-//Read Scores
-const leaderboard = ref(db, 'players/');
-onValue(leaderboard, (snapshot) => {
-	const data = snapshot.val();
-	const names = Object.keys(data);
-	const scores = Object.values(data);
-	for (let i = 0; i < names.length; i++) {
-		let name = names[i];
-		document.querySelector(`.player-name-${i + 1}`).innerHTML = name;
-		let score = scores[i].score;
-		document.querySelector(`.player-score-${i + 1}`).innerHTML = score;
-	}
-});
 
 /**
  * Base
@@ -128,7 +82,7 @@ const defaultContactMaterial = new CANNON.ContactMaterial(
 	}
 );
 const world = new CANNON.World();
-world.solver.iterations = 20;
+world.solver.iterations = 1000;
 world.solver.tolarence = 0.0001;
 world.gravity.set(0, -9.82, 0);
 const sphereShape = new CANNON.Sphere(0.3);
@@ -274,9 +228,9 @@ if (sizes.width < sizes.height) {
 }
 
 /**cannon debuger */
-// const cannonDebuger = new CannonDebugger(scene, world, {
-// 	color: 0xff0000,
-// });
+const cannonDebuger = new CannonDebugger(scene, world, {
+	color: 0xff0000,
+});
 
 let lost = false;
 const clock = new THREE.Clock();
@@ -324,9 +278,9 @@ function tick() {
 
 		//upadte Physics
 
-		world.step(1 / 120, deltaTime, 3);
+		world.step(1 / 240, deltaTime);
 		ball.position.copy(sphereBody.position);
-		// cannonDebuger.update();
+		cannonDebuger.update();
 		// Update controls
 		// controls.update();
 
@@ -334,7 +288,6 @@ function tick() {
 		renderer.render(scene, camera);
 
 		// Call tick again on the next frame
-
 		window.requestAnimationFrame(tick);
 	}
 }
