@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { DragControls } from 'three/examples/jsm/controls/DragControls';
 import CannonDebugger from 'cannon-es-debugger';
-import * as dat from 'lil-gui';
+//import * as dat from 'lil-gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TextureLoader } from 'three';
 
@@ -11,7 +11,7 @@ import { TextureLoader } from 'three';
  * Base
  */
 // Debug
-const gui = new dat.GUI();
+//const gui = new dat.GUI();
 
 const ballFollower = document.querySelector('.ballFollower');
 // Canvas
