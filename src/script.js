@@ -61,9 +61,6 @@ ballTexture.wrapT = THREE.MirroredRepeatWrapping;
 ballTexture.repeat.x = 2;
 let BallMaterial = new THREE.MeshStandardMaterial({
 	map: ballTexture,
-	castShadow: true,
-	receiveShadow: true,
-	// transparent: true,
 });
 
 const ball = new THREE.Mesh(
@@ -208,8 +205,14 @@ window.addEventListener('pointermove', (event) => {
 });
 if (sizes.width < sizes.height) {
 	// /**Mobile Controls */
-	const dragrack = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.1));
-	dragrack.position.y = 0.08;
+	const dragrack = new THREE.Mesh(
+		new THREE.BoxGeometry(2, 0.2, 3),
+		new THREE.MeshStandardMaterial({
+			visible: false,
+		})
+	);
+	dragrack.position.y = 0.1;
+	// dragrack.position.z = 1;
 	scene.add(dragrack);
 	const objects = [];
 	objects.push(dragrack);
@@ -305,6 +308,8 @@ function startGame() {
 	setTimeout(() => {
 		mouseMove = true;
 	}, 20);
+
+	document.querySelector('.scroll-trigger').click();
 }
 function resetGameMenu() {
 	if (counterNumber === 0) {
@@ -313,6 +318,8 @@ function resetGameMenu() {
 	score.innerHTML = counterNumber - 1;
 	lostGame.style.display = 'block';
 	mouseMove = false;
+
+	document.querySelector('.scroll-trigger').click();
 }
 function resetGame() {
 	lost = false;
@@ -333,4 +340,5 @@ function resetGame() {
 	setTimeout(() => {
 		world.gravity.set(0, -9.82, 0);
 	}, 500);
+	document.querySelector('.scroll-trigger').click();
 }
