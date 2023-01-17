@@ -2,8 +2,6 @@ import './style.css';
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { DragControls } from 'three/examples/jsm/controls/DragControls';
-//import CannonDebugger from 'cannon-es-debugger';
-//import * as dat from 'lil-gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TextureLoader } from 'three';
 
