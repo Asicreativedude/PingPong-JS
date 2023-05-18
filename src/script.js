@@ -40,7 +40,7 @@ const gltfLoader = new GLTFLoader();
 let racket;
 
 gltfLoader.load(
-	'https://uploads-ssl.webflow.com/602e8a5e1ca547507804f0b0/631b3e2ca0927ff3a0383a64_RACKET.glb.txt',
+	'https://uploads-ssl.webflow.com/645d43bcad69ce6ac8fffa52/6465c2fc7baff01349f08fa5_RACKET.glb.txt',
 	(gltf) => {
 		scene.add(gltf.scene);
 		racket = gltf.scene;
@@ -52,7 +52,7 @@ gltfLoader.load(
 );
 
 const ballTexture = new TextureLoader().load(
-	'https://uploads-ssl.webflow.com/602e8a5e1ca547507804f0b0/631b0e559148ed0242f71049_asiPong.png'
+	'https://uploads-ssl.webflow.com/645d43bcad69ce6ac8fffa52/6465c32c820e9ee2db10cce6_asiPong.png'
 );
 ballTexture.wrapS = THREE.MirroredRepeatWrapping;
 ballTexture.wrapT = THREE.MirroredRepeatWrapping;
